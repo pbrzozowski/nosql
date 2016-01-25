@@ -2,10 +2,10 @@
 
 #####Import pliku bazy danych Reddit RC_2015-01 do bazy MongoDB wersja 3.0.7
 
-Pobrałam plik bazy **Reddit** ze wszystkimi komentarzami ze stycznia 2015 wielkości 5.5 GB ze strony [archive.org](www.archive.org/download/2015_reddit_comments_corpus/reddit_data/2015/).
-Zaimportowałam go do bazy MongoDB (skompresowany) korzystając z poniższej komendy:
+Zaimportowałem plik bazy **Reddit** ze wszystkimi komentarzami do grudnia 2010r. ze strony [archive.org](www.archive.org/download/2015_reddit_comments_corpus/reddit_data/2010/).
+korzystając z poniższej komendy:
 ```sh
-time bunzip2 -c RC_2015-01.bz2 | mongoimport --drop --host 127.0.0.1 -d test -c reddit
+bunzip2 -c RC_2010-12.bz2 | mongoimport --drop --host 127.0.0.1 -d test -c reddit
 ```
 ![import](img/obraz1.png)
 
@@ -41,38 +41,35 @@ Historia Procesora:
 
 ![procesor](img/obraz2.png)
 
-Procesory były obciążone równomiernie od 25 do 95 procent. Widać, że w trakcie importu kolejne rdzenie przegrzewają się i wyłączają co kilka sekund, a inne rdzenie przejmują pracę. Pamięć była wykorzystywana od 28 do 31 procent. 
+Procesory były obciążone równomiernie od 25 do 95 procent. 
+Pamięć była wykorzystywana od 28 do 31 procent. 
 
-Połączyłam się z mongo, przeszłam do bazy testy i wybrałam kolekcję reddit:
+* policzyłem wszystkie ekordy:
 ```sh
-mongo
-MongoDB shell version: 3.0.7
-connecting to: test
-> show dbs
-local	0.203125GB
-test	37.935546875GB
-> use test
-switched to db test
-> show collections
-reddit
-system.indexes
+> db.reddit.count()
+5972642
 ```
-Policzyłam wszystkie jsony:
 
-![json](img/obraz3.png)
-
-##### Dodałam przykładowe zapytania:
-
-* wyświetlenie wpisów z liczbą polubień ponad 6000 ("ups") - największy wynik (tylko nazwa autora, komentarz, nazwa subreddita i liczba polubień komentarza):
+* wyświetlenie [3] wpisów z liczbą polubień ponad 2000, wraz z urywkiem komentarza, liczba polubień oraz nazwą autroa 
 ```sh
-db.reddit.find({ups: { $gte: 6000}}, {_id:0, author:1, body:1, subreddit:1, ups:1})
-{
-  "body": "I can answer this one.  For some reason, I attract these people into my life.  [...]  Nobody has it all.  Nobody.",
-  "subreddit": "AskReddit",
-  "author": "a1988eli",
-  "ups": 6597
+> db.reddit.find({ups: { $gte: 2000}}, {_id:0, author:1, body:1, ups:1}).limit(3)
+{ 
+"author" : "lps41",
+"ups" : 2699,
+"body" : "Obama was a sellout when he [backed off on closing Guantanamo] http://www.nytimes.com/2010/06/26/us/politics/26gitmo.html?_r=1&amp;partner=rss&amp;emc=rss). \n\nObama was a sellout when he [...]**Obama has been a sellout since day one.**\n\n*Please respect the amount of work put into this comment by replying to explain why you're downvoting, if you do so*." 
 }
-Fetched 3 record(s) in 646239ms
+
+{ 
+"body" : "We call that \"The Long Troll.\"",
+ „ups" : 2126,
+ "author" : "AngusMustang" 
+}
+
+{ 
+"ups" : 2232,
+"author" : "barehandhunter", 
+"body" : "The answer is yes, although I suspect you underestimate the power and lightening-fast reflexes of a wolf.  […. ] I'll do another post soon on how to properly field dress, skin, and prepare a dog for eating." 
+}
 ```
 * wyświetlenie 5 autorów wpisów nagrodzonych "złotem" siedmio- i ośmiokrotnie (tylko nazwa autora i liczba nagrodzeń):
 ```sh
@@ -99,90 +96,19 @@ db.reddit.find({gilded : {$in: [7, 8]}},{_id:0, author:1, gilded:1}).limit(5)
 }
 Fetched 5 record(s) in 453257ms
 ```
-* wyświetlenie 5 pierwszych wpisów nagrodzonego ośmiokrotnie złotem autora "coughdropz" (tylko nazwa autora i komentarz):
+* zliczenie wszystkich autorów zaczynajacych sie na litere p
 ```sh
-db.reddit.find({author: "coughdropz"}, {_id:0, author:1, body:1}).limit(5)
-{
-  "body": "Expecting a big game from Nico Suave tonight!"
-}
-{
-  "body": "I got downvoted to hell for calling this guy a joke.  He's going to be demanding a starting position for the Bejing Ducks or some shit if he's not careful."
-}
-{
-  "body": "I backed it up!  Don't judge downvotes from a post you never read.  "
-}
-{
-  "body": "It has very little to do with his skill as an athlete and more to do with his negative basketball IQ, terrible shot selection, and HILARIOUSLY stupid comments to the media.  Get off your high horse, the guy who's shooting 28% from 3 while still jacking them up, talks shit about dread locks while sitting 10 feet from a teammate with dread locks, and gets WAIVED because he's such a fool the Pistons would rather pay him to play for someone else is a JOKE.  Not to mention he then demands a starting role instead of working to rehab his career.  Why do we have to play pretend for the sake of Josh Smith's feelings?  If you hurt your team, get waived, demand a starting role, and promptly shit the bed, you're a joke.\n\n"
-}
-{
-  "body": "He started it.  I have dread locks!"
-}
-Fetched 5 record(s) in 60668ms
+> db.reddit.find({author: /^p/}).count()
+143369
 ```
-Historia procesora podczas wyszukiwania wpisów autora "coughdropz":
 
-![wyszukiwanie](img/obraz4.png)
-
-* wyświetlenie 5 subredditów na literę "m" z pominięciem 3 pierwszych:
+* wyświetlenie [3] najlepiej ocenianych tematów
 ```sh
-db.reddit.find({subreddit: /^m/}, {_id:0, subreddit:1}).skip(3).limit(5)
-{
-  "subreddit": "mistyfront"
-}
-{
-  "subreddit": "marvelstudios"
-}
-{
-  "subreddit": "mercedes"
-}
-{
-  "subreddit": "milwaukee"
-}
-{
-  "subreddit": "magicTCG"
-}
-Fetched 5 record(s) in 3ms
+> db.reddit.find({},{_id:0,body:1}).sort({"sorce":-1}).limit(3)
+{ "body" : "This is a failure for Google. Shame on you, Google." }
+{ "body" : "you made an excellent choice not buying a home in arizona" }
+{ "body" : "I cannot believe how much this made me laugh. " }
 ```
-* zliczenie wszystkich wpisów w subreddicie "marvelstudios":
-```sh
-db.reddit.find({subreddit: "marvelstudios"}).count()
-27924
-```
-* wyświetlenie grupowania 5 najbardziej aktywnych subredditów:
-```sh
-db.reddit.aggregate([ 
-{$group:{_id: "$subreddit", count:{$sum: 1}}},
-{$sort:{count: -1}},
-{$limit: 5}
-]);
-{
-  "result": [
-    {
-      "_id": "AskReddit",
-      "count": 4712795
-    },
-    {
-      "_id": "nfl",
-      "count": 932460
-    },
-    {
-      "_id": "funny",
-      "count": 930098
-    },
-    {
-      "_id": "leagueoflegends",
-      "count": 904297
-    },
-    {
-      "_id": "pics",
-      "count": 778942
-    }
-  ],
-  "ok": 1
-}
-```
-![chart](img/chart1.png)
-
 * znajdź ostatni wpis w kolekcji:
 ```sh
 db.reddit.findOne( {$query:{}, $orderby:{$natural:-1}} )
