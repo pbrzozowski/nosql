@@ -1,0 +1,511 @@
+{
+	"type" : "FeatureCollection",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Malbork",
+				"type" : "Point",
+				"coordinates" : [
+					19.04251,
+					54.02356
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Lichnowy",
+				"type" : "Point",
+				"coordinates" : [
+					18.90946,
+					54.11389
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Gnojewo",
+				"type" : "Point",
+				"coordinates" : [
+					18.914649,
+					54.053303
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Tczew",
+				"type" : "Point",
+				"coordinates" : [
+					18.7783,
+					54.10072
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Zajączkowo",
+				"type" : "Point",
+				"coordinates" : [
+					18.737839,
+					54.127099
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Pruszcz Gdański",
+				"type" : "Point",
+				"coordinates" : [
+					18.610153,
+					54.24019
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Straszyn",
+				"type" : "Point",
+				"coordinates" : [
+					18.59435,
+					54.27803
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Skarszewy",
+				"type" : "Point",
+				"coordinates" : [
+					18.45408,
+					54.06818
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Starogard Gdański",
+				"type" : "Point",
+				"coordinates" : [
+					18.486018,
+					53.95403
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Janowo",
+				"type" : "Point",
+				"coordinates" : [
+					18.56544,
+					53.93956
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Subkowy",
+				"type" : "Point",
+				"coordinates" : [
+					18.766833,
+					53.983213
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Warlubie",
+				"type" : "Point",
+				"coordinates" : [
+					18.63509,
+					53.589557
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Bzowo",
+				"type" : "Point",
+				"coordinates" : [
+					18.650867,
+					53.562477
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Dolna Grupa",
+				"type" : "Point",
+				"coordinates" : [
+					18.686419,
+					53.508129
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Morgi",
+				"type" : "Point",
+				"coordinates" : [
+					18.686296,
+					53.633736
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Nowe",
+				"type" : "Point",
+				"coordinates" : [
+					18.724843,
+					53.65529
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Gardeja",
+				"type" : "Point",
+				"coordinates" : [
+					18.939815,
+					53.605067
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Michale",
+				"type" : "Point",
+				"coordinates" : [
+					18.718046,
+					53.490219
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Plewno",
+				"type" : "Point",
+				"coordinates" : [
+					18.281364,
+					53.440803
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Osie",
+				"type" : "Point",
+				"coordinates" : [
+					18.348787,
+					53.59474
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Bysław",
+				"type" : "Point",
+				"coordinates" : [
+					18.007914,
+					53.504869
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Lisi Ogon",
+				"type" : "Point",
+				"coordinates" : [
+					17.880135,
+					53.124999
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Bydgoszcz",
+				"type" : "Point",
+				"coordinates" : [
+					17.92162,
+					53.14757
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Osielsko",
+				"type" : "Point",
+				"coordinates" : [
+					18.06768,
+					53.1846
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Bydgoszcz",
+				"type" : "Point",
+				"coordinates" : [
+					18.071791,
+					53.117424
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Strzyżawa",
+				"type" : "Point",
+				"coordinates" : [
+					18.18635,
+					53.13587
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Bydgoszcz",
+				"type" : "Point",
+				"coordinates" : [
+					18.15669,
+					53.15429
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Chełmno",
+				"type" : "Point",
+				"coordinates" : [
+					18.461542,
+					53.341494
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Żygląd",
+				"type" : "Point",
+				"coordinates" : [
+					18.516537,
+					53.25881
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Stolno",
+				"type" : "Point",
+				"coordinates" : [
+					18.506416,
+					53.315769
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Łubianka",
+				"type" : "Point",
+				"coordinates" : [
+					18.50163,
+					53.11872
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Ostaszewo",
+				"type" : "Point",
+				"coordinates" : [
+					18.625429,
+					53.120997
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Obórznia",
+				"type" : "Point",
+				"coordinates" : [
+					17.942223,
+					52.971383
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Zamość",
+				"type" : "Point",
+				"coordinates" : [
+					17.826776,
+					53.072788
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Bożejewice",
+				"type" : "Point",
+				"coordinates" : [
+					17.68714,
+					52.81485
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Mąkowarsko",
+				"type" : "Point",
+				"coordinates" : [
+					17.815902,
+					53.403058
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Mieścisko",
+				"type" : "Point",
+				"coordinates" : [
+					17.33386,
+					52.74137
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Kłecko",
+				"type" : "Point",
+				"coordinates" : [
+					17.42926,
+					52.635
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Fijewo",
+				"type" : "Point",
+				"coordinates" : [
+					18.931202,
+					53.395975
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Szczepanki",
+				"type" : "Point",
+				"coordinates" : [
+					19.03193,
+					53.51878
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Łasin",
+				"type" : "Point",
+				"coordinates" : [
+					19.069,
+					53.53725
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Łąkorz",
+				"type" : "Point",
+				"coordinates" : [
+					19.351773,
+					53.442953
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Iława",
+				"type" : "Point",
+				"coordinates" : [
+					19.588842,
+					53.605546
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Dzierzgoń",
+				"type" : "Point",
+				"coordinates" : [
+					19.34883,
+					53.92017
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Miłomłyn",
+				"type" : "Point",
+				"coordinates" : [
+					19.842065,
+					53.765659
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Miłomłyn",
+				"type" : "Point",
+				"coordinates" : [
+					19.857879,
+					53.765754
+				]
+			}
+		}
+	]
+}
