@@ -71,31 +71,7 @@ Pamięć była wykorzystywana od 28 do 31 procent.
 "body" : "The answer is yes, although I suspect you underestimate the power and lightening-fast reflexes of a wolf.  […. ] I'll do another post soon on how to properly field dress, skin, and prepare a dog for eating." 
 }
 ```
-* wyświetlenie 5 autorów wpisów nagrodzonych "złotem" siedmio- i ośmiokrotnie (tylko nazwa autora i liczba nagrodzeń):
-```sh
-db.reddit.find({gilded : {$in: [7, 8]}},{_id:0, author:1, gilded:1}).limit(5)
-{
-  "author": "Xarasystral",
-  "gilded": 7
-}
-{
-  "gilded": 8,
-  "author": "coughdropz"
-}
-{
-  "gilded": 7,
-  "author": "lalaland40000"
-}
-{
-  "author": "IMoustacheYou",
-  "gilded": 7
-}
-{
-  "author": "desmunda1",
-  "gilded": 7
-}
-Fetched 5 record(s) in 453257ms
-```
+
 * zliczenie wszystkich autorów zaczynajacych sie na litere p
 ```sh
 > db.reddit.find({author: /^p/}).count()
