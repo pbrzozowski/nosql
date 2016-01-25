@@ -1,0 +1,115 @@
+{
+	"type" : "FeatureCollection",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Gdańsk",
+				"type" : "Point",
+				"coordinates" : [
+					18.59567,
+					54.3509
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Gdańsk",
+				"type" : "Point",
+				"coordinates" : [
+					18.71147,
+					54.3506
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Gdańsk",
+				"type" : "Point",
+				"coordinates" : [
+					18.65841,
+					54.391505
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Gdańsk",
+				"type" : "Point",
+				"coordinates" : [
+					18.571749,
+					54.337487
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Gdańsk",
+				"type" : "Point",
+				"coordinates" : [
+					18.619926,
+					54.394374
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Gdańsk",
+				"type" : "Point",
+				"coordinates" : [
+					18.621572,
+					54.397784
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Gdańsk",
+				"type" : "Point",
+				"coordinates" : [
+					18.59482,
+					54.40933
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Gdańsk",
+				"type" : "Point",
+				"coordinates" : [
+					18.52591,
+					54.35009
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Kowale",
+				"type" : "Point",
+				"coordinates" : [
+					18.546702,
+					54.304205
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Straszyn",
+				"type" : "Point",
+				"coordinates" : [
+					18.59435,
+					54.27803
+				]
+			}
+		}
+	]
+}
