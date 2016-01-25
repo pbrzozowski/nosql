@@ -177,6 +177,7 @@ SELECT data->>'subreddit' AS subreddit FROM import.rc_2010_12 WHERE data->>'subr
 |Import bazy danych				|+ jedna komenda	|- przy użyciu programu pgfutter	|
 |Obciążenie procesora w trakcie importu		|- mongoimport: większe	|+ pgfutter: mniejsze			|
 |Łatwość wyszukiwania jsonów			|+ (osobne rekordy)	|- (wszystkie rekordy w jednej linijce)	|
+|Suma plusów					| 4 pozytywy		| 1 pozytyw				|
 
 ###Zadanie 2 GeoJSON
 
