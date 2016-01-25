@@ -1,0 +1,60 @@
+{
+	"type" : "FeatureCollection",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Szczytno",
+				"type" : "Point",
+				"coordinates" : [
+					21.018479,
+					53.560876
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Szczytno",
+				"type" : "Point",
+				"coordinates" : [
+					20.980359,
+					53.565915
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Olsztyn",
+				"type" : "Point",
+				"coordinates" : [
+					20.4641,
+					53.767401
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Stawiguda",
+				"type" : "Point",
+				"coordinates" : [
+					20.396299,
+					53.656667
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Miłomłyn",
+				"type" : "Point",
+				"coordinates" : [
+					19.842065,
+					53.765659
+				]
+			}
+		}
+	]
+}
