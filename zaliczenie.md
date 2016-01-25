@@ -182,42 +182,13 @@ SELECT data->>'subreddit' AS subreddit FROM import.rc_2010_12 WHERE data->>'subr
 ###Zadanie 2 GeoJSON
 
 Do tego zadania użyłem współrzędnych geograficznych stacji paliw pobranych z serwisu poipoint.pl w formacie csv.
-```
-time mongoimport -d Trains -c fuel --type csv --file Stacje_Paliw.csv --headerline
-
-connected to: 127.0.0.1
-check 9 1433
-imported 1432 objects
-
-real    0m 0.043s
-user    0m 0.019s
-sys     0m 0.014s
-```
-
-Przykładowy dokument:
-```
-> db.fuel.findOne()
-{
-	"_id" : ObjectId("5468c9bec5e4ff939974a6c4"),
-	"coo1" : 20.154418,
-	"coo2" : 50.220851,
-	"type" : "Stacje Paliw",
-	"city" : "Niegardów",
-	"address" : 775
-}
-```
-
 Do poprawienia formatu danych wykorzystałem [skrypt](https://github.com/psynowczyk/tnosql/blob/master/fix_fuel.js)
-```
-time mongo fix_fuel.js
-
-real    0m 0.138s
-user    0m 0,109s
-sys     0m 0.026s
+```sh
+time mongoimport -d Trains -c fuel --type csv --file Stacje_Paliw.csv --headerline
 ```
 
 Przykładowy poprawiony dokument:
-```
+```sh
 > db.fuel.findOne()
 {
 	"_id" : ObjectId("5468cadcc5e4ff939974b1b5"),
@@ -234,14 +205,14 @@ Przykładowy poprawiony dokument:
 ```
 
 Dodajemy geo-indeks do kolekcji:
-```
+```sh
 > db.fuel.ensureIndex({"loc": "2dsphere"})
 ```
 
 ### 1d.1
 
 10 najbliższych stacji paliw w promieniu 20km od centrum Gdańska
-```
+```sh
 > var gdansk = { "type": "Point", "coordinates": [18.65, 54.35] }
 > db.fuel.find({ loc: { $near: { $geometry: gdansk }, $maxDistance: 20000 } }).limit(10).toArray()
 [
@@ -364,7 +335,7 @@ Mapa: https://github.com/psynowczyk/tnosql/blob/master/1d1_result.geojson
 ### 1d.2
 
 Stacje paliw w promieniu 0.8° od Olsztyna
-```
+```sh
 var olsztyn = { "type": "Point", "coordinates": [20.48, 53.78] }
 db.fuel.find({
 	loc: {
@@ -379,7 +350,7 @@ Mapa: https://github.com/psynowczyk/tnosql/blob/master/1d2_result.geojson
 ### 1d.3
 
 100 stacji paliw na obszarze pomiędzy Gdańskiem, Olsztynem i Poznaniem.
-```
+```sh
 db.fuel.find({
 	loc: {
 		$geoWithin: {
@@ -401,7 +372,7 @@ Mapa: https://github.com/psynowczyk/tnosql/blob/master/1d3_result.geojson
 ### 1d.4
 
 Stacje paliw na linii Warszawa-Gdańsk (z powodu braku wyniku podałem dokładne współrzędne punktu A i B, które są stacjami paliw)
-```
+```sh
 var line = {
 	"type": "LineString",
 	"coordinates": [[20.904929, 52.239413], [19.424150, 54.374859]]
