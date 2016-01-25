@@ -181,108 +181,237 @@ SELECT data->>'subreddit' AS subreddit FROM import.rc_2010_12 WHERE data->>'subr
 
 ###Zadanie 2 GeoJSON
 
-#####Import pliku orlen.json do bazy MongoDB
-
-Pobrałam plik bazy danych lokalizacji stacji benzynowych Orlen w Polsce orlen.json. Lokalna kopia bazy: [orlen.json](www.github.com/jkowalska/nosql/blob/master/img/orlen.json). Zaimportowałam plik do bazy MongoDB korzystając z poniższej komendy:
-```sh
-time mongoimport -d orlen -c stacje < orlen.json
+Do tego zadania użyłem współrzędnych geograficznych stacji paliw pobranych z serwisu poipoint.pl w formacie csv.
 ```
-Czas importowania pliku:
-```sh
-imported 1245 objects
+time mongoimport -d Trains -c fuel --type csv --file Stacje_Paliw.csv --headerline
 
-real	0m0.572s
-user	0m0.088s
-sys	0m0.088s
+connected to: 127.0.0.1
+check 9 1433
+imported 1432 objects
+
+real    0m 0.043s
+user    0m 0.019s
+sys     0m 0.014s
 ```
-* przykładowy pierwszy geojson:
-```sh
-db.stacje.findOne()
+
+Przykładowy dokument:
+```
+> db.fuel.findOne()
 {
-	"_id" : ObjectId("56587fb9d3d1ab580a563180"),
+	"_id" : ObjectId("5468c9bec5e4ff939974a6c4"),
+	"coo1" : 20.154418,
+	"coo2" : 50.220851,
+	"type" : "Stacje Paliw",
+	"city" : "Niegardów",
+	"address" : 775
+}
+```
+
+Do poprawienia formatu danych wykorzystałem [skrypt](https://github.com/psynowczyk/tnosql/blob/master/fix_fuel.js)
+```
+time mongo fix_fuel.js
+
+real    0m 0.138s
+user    0m 0,109s
+sys     0m 0.026s
+```
+
+Przykładowy poprawiony dokument:
+```
+> db.fuel.findOne()
+{
+	"_id" : ObjectId("5468cadcc5e4ff939974b1b5"),
+	"city" : "Velence",
 	"loc" : {
 		"type" : "Point",
 		"coordinates" : [
-			20.021194,
-			49.453218
+			18.637587,
+			47.244133
 		]
+	}
+}
+>
+```
+
+Dodajemy geo-indeks do kolekcji:
+```
+> db.fuel.ensureIndex({"loc": "2dsphere"})
+```
+
+### 1d.1
+
+10 najbliższych stacji paliw w promieniu 20km od centrum Gdańska
+```
+> var gdansk = { "type": "Point", "coordinates": [18.65, 54.35] }
+> db.fuel.find({ loc: { $near: { $geometry: gdansk }, $maxDistance: 20000 } }).limit(10).toArray()
+[
+	{
+		"_id" : ObjectId("5468cadcc5e4ff939974acf3"),
+		"city" : "Gdańsk",
+		"loc" : {
+			"type" : "Point",
+			"coordinates" : [
+				18.59567,
+				54.3509
+			]
+		}
 	},
-	"name" : "Stacje paliw Orlen",
-	"city" : "Nowy Targ"
+	{
+		"_id" : ObjectId("5468cadcc5e4ff939974ad4c"),
+		"city" : "Gdańsk",
+		"loc" : {
+			"type" : "Point",
+			"coordinates" : [
+				18.71147,
+				54.3506
+			]
+		}
+	},
+	{
+		"_id" : ObjectId("5468cadcc5e4ff939974ae4f"),
+		"city" : "Gdańsk",
+		"loc" : {
+			"type" : "Point",
+			"coordinates" : [
+				18.65841,
+				54.391505
+			]
+		}
+	},
+	{
+		"_id" : ObjectId("5468cadcc5e4ff939974b05e"),
+		"city" : "Gdańsk",
+		"loc" : {
+			"type" : "Point",
+			"coordinates" : [
+				18.571749,
+				54.337487
+			]
+		}
+	},
+	{
+		"_id" : ObjectId("5468cadcc5e4ff939974ad8f"),
+		"city" : "Gdańsk",
+		"loc" : {
+			"type" : "Point",
+			"coordinates" : [
+				18.619926,
+				54.394374
+			]
+		}
+	},
+	{
+		"_id" : ObjectId("5468cadcc5e4ff939974ad95"),
+		"city" : "Gdańsk",
+		"loc" : {
+			"type" : "Point",
+			"coordinates" : [
+				18.621572,
+				54.397784
+			]
+		}
+	},
+	{
+		"_id" : ObjectId("5468cadcc5e4ff939974ad1c"),
+		"city" : "Gdańsk",
+		"loc" : {
+			"type" : "Point",
+			"coordinates" : [
+				18.59482,
+				54.40933
+			]
+		}
+	},
+	{
+		"_id" : ObjectId("5468cadcc5e4ff939974acf4"),
+		"city" : "Gdańsk",
+		"loc" : {
+			"type" : "Point",
+			"coordinates" : [
+				18.52591,
+				54.35009
+			]
+		}
+	},
+	{
+		"_id" : ObjectId("5468cadcc5e4ff939974ace9"),
+		"city" : "Kowale",
+		"loc" : {
+			"type" : "Point",
+			"coordinates" : [
+				18.546702,
+				54.304205
+			]
+		}
+	},
+	{
+		"_id" : ObjectId("5468cadcc5e4ff939974ad10"),
+		"city" : "Straszyn",
+		"loc" : {
+			"type" : "Point",
+			"coordinates" : [
+				18.59435,
+				54.27803
+			]
+		}
+	}
+]
+```
+
+Przekształcenie do formatu geojson za pomocą [skryptu](https://github.com/psynowczyk/tnosql/blob/master/to_geojson.js)<br>
+Mapa: https://github.com/psynowczyk/tnosql/blob/master/1d1_result.geojson
+
+### 1d.2
+
+Stacje paliw w promieniu 0.8° od Olsztyna
+```
+var olsztyn = { "type": "Point", "coordinates": [20.48, 53.78] }
+db.fuel.find({
+	loc: {
+		$geoWithin: {
+			$center: [[olsztyn.coordinates[0], olsztyn.coordinates[1]], 0.80]
+		}
+	}
+}).limit(5).toArray();
+```
+Mapa: https://github.com/psynowczyk/tnosql/blob/master/1d2_result.geojson
+
+### 1d.3
+
+100 stacji paliw na obszarze pomiędzy Gdańskiem, Olsztynem i Poznaniem.
+```
+db.fuel.find({
+	loc: {
+		$geoWithin: {
+			$geometry: {
+				"type": "Polygon",
+				"coordinates": [[
+					[18.65, 54.35],
+					[20.48, 53.78],
+					[16.93, 52.41],
+					[18.65, 54.35]
+				]]
+			}
+		}
+	}
+}).limit(100).toArray();
+```
+Mapa: https://github.com/psynowczyk/tnosql/blob/master/1d3_result.geojson
+
+### 1d.4
+
+Stacje paliw na linii Warszawa-Gdańsk (z powodu braku wyniku podałem dokładne współrzędne punktu A i B, które są stacjami paliw)
+```
+var line = {
+	"type": "LineString",
+	"coordinates": [[20.904929, 52.239413], [19.424150, 54.374859]]
 }
+db.fuel.find({
+	loc: {
+		$geoIntersects: {
+			$geometry: line
+		}
+	}
+}).limit(100).toArray();
 ```
-[Geojson "Point"](img/test1.geojson "Point")
-
-Dodałam geoindeks do kolekcji stacje:
-```sh
-db.stacje.ensureIndex({loc : "2dsphere"})
-{
-	"createdCollectionAutomatically" : false,
-	"numIndexesBefore" : 1,
-	"numIndexesAfter" : 2,
-	"ok" : 1
-}
-```
-##### Dodałam przykładowe zapytania:
-
-Do opracowania zapytań skorzystałam ze strony [geojson.io](www.geojson.io/#map=2/20.1/-0.2).
-
-* znajdź stacje Orlen oddalone od Władysławowa o maksymalnie o 25km:
-```sh
-db.stacje.find({loc: {$near: {$geometry: {type: "Point", coordinates: [18.405400,54.775920]}, $maxDistance: 25000}}}).skip(1)
-{ "_id" : ObjectId("56587fbad3d1ab580a56352d"), "loc" : { "type" : "Point", "coordinates" : [ 18.40589, 54.71592 ] }, "name" : "Stacje paliw Orlen", "city" : "Puck" }
-{ "_id" : ObjectId("56587fbad3d1ab580a5634a4"), "loc" : { "type" : "Point", "coordinates" : [ 18.1183, 54.78674 ] }, "name" : "Stacje paliw Orlen", "city" : "Odargowo" }
-{ "_id" : ObjectId("56587fbad3d1ab580a563614"), "loc" : { "type" : "Point", "coordinates" : [ 18.27235, 54.60235 ] }, "name" : "Stacje paliw Orlen", "city" : "Wejherowo" }
-{ "_id" : ObjectId("56587fbad3d1ab580a563332"), "loc" : { "type" : "Point", "coordinates" : [ 18.37933, 54.57634 ] }, "name" : "Stacje paliw Orlen", "city" : "Rumia" }
-{ "_id" : ObjectId("56587fbad3d1ab580a5633fc"), "loc" : { "type" : "Point", "coordinates" : [ 18.18959, 54.61076 ] }, "name" : "Stacje paliw Orlen", "city" : "Wejherowo" }
-{ "_id" : ObjectId("56587fbad3d1ab580a563327"), "loc" : { "type" : "Point", "coordinates" : [ 18.42266, 54.56018 ] }, "name" : "Stacje paliw Orlen", "city" : "Rumia" }
-```
-[Geojson "Point"](img/test2.geojson "Point")
-
-* znajdź stacje w Pucku i najbliższych 3 miastach:
-```sh
-db.stacje.find({loc: {$near: {$geometry: {type: "Point", coordinates: [18.405890,54.715920]}}}}).limit(3)
-{ "_id" : ObjectId("56587fbad3d1ab580a56352d"), "loc" : { "type" : "Point", "coordinates" : [ 18.40589, 54.71592 ] }, "name" : "Stacje paliw Orlen", "city" : "Puck" }
-{ "_id" : ObjectId("56587fbad3d1ab580a563490"), "loc" : { "type" : "Point", "coordinates" : [ 18.4054, 54.77592 ] }, "name" : "Stacje paliw Orlen", "city" : "Władysławowo" }
-{ "_id" : ObjectId("56587fbad3d1ab580a563614"), "loc" : { "type" : "Point", "coordinates" : [ 18.27235, 54.60235 ] }, "name" : "Stacje paliw Orlen", "city" : "Wejherowo" }
-```
-[Geojson "Point"](img/test3.geojson "Point")
-
-* znajdź stacje na linii Gdańsk - Lębork:
-```sh
-db.stacje.find({loc: {$geoIntersects: {$geometry: {type: "LineString", coordinates: [ [18.477135,54.380675], [17.797210,54.551720]]}}}})
-{ "_id" : ObjectId("56587fbad3d1ab580a56329a"), "loc" : { "type" : "Point", "coordinates" : [ 18.477135, 54.380675 ] }, "name" : "Stacje paliw Orlen", "city" : "Gdańsk" }
-{ "_id" : ObjectId("56587fbad3d1ab580a5633fe"), "loc" : { "type" : "Point", "coordinates" : [ 17.79721, 54.55172 ] }, "name" : "Stacje paliw Orlen", "city" : "Lębork" }
-```
-[Geojson "LineString"](img/test4.geojson "LineString")
-
-* znajdź stacje w Słupsku i okolicach:
-```sh
-db.stacje.find({loc: {$geoWithin: {$geometry: {type: "Polygon", coordinates: [[
-	    [
-              16.93817138671875,
-              54.410938637023676
-            ],
-            [
-              16.93817138671875,
-              54.51470449573694
-            ],
-            [
-              17.12493896484375,
-              54.51470449573694
-            ],
-            [
-              17.12493896484375,
-              54.410938637023676
-            ],
-            [
-              16.93817138671875,
-              54.410938637023676
-            ]
-            ]]}}}})
-{ "_id" : ObjectId("56587fbad3d1ab580a5632de"), "loc" : { "type" : "Point", "coordinates" : [ 17.04061, 54.46524 ] }, "name" : "Stacje paliw Orlen", "city" : "Słupsk" }
-{ "_id" : ObjectId("56587fbad3d1ab580a5635e8"), "loc" : { "type" : "Point", "coordinates" : [ 17.02624, 54.47686 ] }, "name" : "Stacje paliw Orlen", "city" : "Słupsk" }
-{ "_id" : ObjectId("56587fbad3d1ab580a5633c0"), "loc" : { "type" : "Point", "coordinates" : [ 16.96817, 54.45112 ] }, "name" : "Stacje paliw Orlen", "city" : "Kobylnica" }
-{ "_id" : ObjectId("56587fbad3d1ab580a5632df"), "loc" : { "type" : "Point", "coordinates" : [ 16.99288, 54.45748 ] }, "name" : "Stacje paliw Orlen", "city" : "Słupsk" }
-```
-[Geojson "Polygon"](img/test5.geojson "Polygon")
+Mapa: https://github.com/psynowczyk/tnosql/blob/master/1d4_result.geojson
