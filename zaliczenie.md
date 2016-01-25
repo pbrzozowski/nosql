@@ -1,7 +1,5 @@
 ###Zadanie 1a MongoDB
 
-#####Import pliku bazy danych Reddit RC_2015-01 do bazy MongoDB wersja 3.0.7
-
 Zaimportowałem plik bazy **Reddit** ze wszystkimi komentarzami do grudnia 2010r. ze strony [archive.org](www.archive.org/download/2015_reddit_comments_corpus/reddit_data/2010/).
 korzystając z poniższej komendy:
 ```sh
@@ -90,7 +88,7 @@ Pamięć była wykorzystywana od 28 do 31 procent.
 db.reddit.findOne( {$query:{}, $orderby:{$natural:-1}} )
 {
 	"_id" : ObjectId("56579d9ec40dd605eb210312"),
-	"author_flair_text" : "RRRAURGH!",
+	"author_flair_text" : "alibaba",
 	"gilded" : 0,
 	"score_hidden" : false,
 	"id" : "co77gzt",
@@ -115,11 +113,13 @@ db.reddit.findOne( {$query:{}, $orderby:{$natural:-1}} )
 ```
 ###Zadanie 1b Postgres
 
-#####Import pliku bazy danych Reddit RC_2015-01 do bazy Postgres wersja 9.4.5
-
-Do zaimportowania rozpakowanego pliku RC_2015-01 użyłam programu pgfutter pobranego z tej strony [github.com/lukasmartinelli](https://github.com/lukasmartinelli/pgfutter). Zaimportowałam plik korzystając z poniższej komendy:
+Na początku rozpakowałem plik pleceniem
 ```sh
-time ./pgfutter --db postgres --user postgres --pw 123456 json RC_2015-01
+bunzip2 -d RC_2010-12.bzip
+```
+Do zaimportowania rozpakowanego pliku RC_2010-12 użyłem programu pgfutter korzystając z poniższej komendy:
+```sh
+./pgfutter --db postgres --user test --pw test json RC_2010-12
 ```
 ![import](img/obraz5.png)
 
