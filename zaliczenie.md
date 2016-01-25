@@ -115,7 +115,7 @@ db.reddit.findOne( {$query:{}, $orderby:{$natural:-1}} )
 
 Na początku rozpakowałem plik pleceniem
 ```sh
-bunzip2 -d RC_2010-12.bzip
+bunzip2 -d RC_2010-12.bz2
 ```
 Do zaimportowania rozpakowanego pliku RC_2010-12 użyłem programu pgfutter korzystając z poniższej komendy:
 ```sh
@@ -172,10 +172,10 @@ SELECT data->>'subreddit' AS subreddit FROM import.rc_2010_12 WHERE data->>'subr
 |Baza danych 					| MongoDB 		| PostgreSQL 				|
 |-----------------------------------------------|-----------------------|---------------------------------------|
 |Wersja						|3.0.7			|9.4.5					|
-|Czas importu					|09m53s			|12m31s + rozpakowaine 4min		|
-|Czas zliczenia rekordów			|<1s			|ok 1min				|
-|Import bazy danych				|jedna komenda		|przy użyciu programu pgfutter		|
-|Obciążenie procesora w trakcie importu		|mongoimport: większe (25-95%)	|pgfutter: mniejsze (5-60%)	|
+|Czas importu					|+ 09m53s		|- 12m31s + rozpakowaine 4min		|
+|Czas zliczenia rekordów			|+ <1s			|- ok 1min				|
+|Import bazy danych				|+ jedna komenda	|- przy użyciu programu pgfutter	|
+|Obciążenie procesora w trakcie importu		|- mongoimport: większe	|+ pgfutter: mniejsze			|
 |Łatwość wyszukiwania jsonów			|+ (osobne rekordy)	|- (wszystkie rekordy w jednej linijce)	|
 
 ###Zadanie 2 GeoJSON
