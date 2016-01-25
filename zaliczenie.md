@@ -129,44 +129,51 @@ Historia Procesora:
 
 Procesory były obciążone równomiernie od 5 do 60 procent. Pamięć była wykorzystywana od 31 do 35 procent.
 
-Policzyłam wszystkie jsony:
-
-![json](img/obraz7.png)
-
-Historia Procesora podczas liczenia:
-
-![json](img/obraz8.png)
-
-##### Dodałam przykładowe zapytania:
+* policzyłem wszystkie rekordy:
+```sh
+select count(*) from import.rc_2010_12;
+  count  
+---------
+ 5972642
+```
 
 * znajdź pierwszy:
 ```sh
-postgres=# select * from import.rc_2015_01 LIMIT 1;
+postgres=# select * from import.rc_2010_12 LIMIT 1;
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  {"score_hidden":false,"name":"t1_cnas8zv","link_id":"t3_2qyr1a","body":"Most of us have some family members like this. *Most* of my family is like this. ","downs":0,"created_utc":"1420070400","score":14,"author":"YoungModern","distinguished":null,"id":"cnas8zv","archived":false,"parent_id":"t3_2qyr1a","subreddit":"exmormon","author_flair_css_class":null,"author_flair_text":null,"gilded":0,"retrieved_on":1425124282,"ups":14,"controversiality":0,"subreddit_id":"t5_2r0gj","edited":false}+
  
 (1 wiersz)
 ```
-* wyświetlenie 5 subredditów na literę "m" z pominięciem 3 pierwszych:
+* zliczenie wszystkich autorów zaczynajacych sie na litere p
 ```sh
-SELECT data->>'subreddit' AS subreddit FROM import.rc_2015_01 WHERE data->>'subreddit' like ('m%') LIMIT 5 OFFSET 3;    
-----------------
- mistyfront
- marvelstudios
- mercedes
- milwaukee
- magicTCG
-(5 wiersze)
+SELECT count(*) FROM import.rc_2010_12 WHERE data->>'author' like ('p%');
+ 143369
 ```
-Czas: natychmiast
-
+* wyswietlenie subreddit zaczynajacych sie na litere i
+```sh
+SELECT data->>'subreddit' AS subreddit FROM import.rc_2010_12 WHERE data->>'subreddit' LIKE ('i%') LIMIT 10;
+   subreddit   
+---------------
+ iaido
+ itookapicture
+ iphone
+ ireland
+ iphone
+ itookapicture
+ itookapicture
+ iphone
+ india
+ india
+ ```
+ 
 ##### Porównanie działania MongoDB i PostgreSQL:
 
 |Baza danych 					| MongoDB 		| PostgreSQL 				|
 |-----------------------------------------------|-----------------------|---------------------------------------|
 |Wersja						|3.0.7			|9.4.5					|
-|Czas importu					|1h49m56s		|1h32m22s				|
-|Czas zliczenia rekordów			|<1s			|22m30s					|
+|Czas importu					|09m53s			|12m31s + rozpakowaine 4min		|
+|Czas zliczenia rekordów			|<1s			|ok 1min				|
 |Import bazy danych				|jedna komenda		|przy użyciu programu pgfutter		|
 |Obciążenie procesora w trakcie importu		|mongoimport: większe (25-95%)	|pgfutter: mniejsze (5-60%)	|
 |Łatwość wyszukiwania jsonów			|+ (osobne rekordy)	|- (wszystkie rekordy w jednej linijce)	|
