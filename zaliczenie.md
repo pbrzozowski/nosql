@@ -182,7 +182,7 @@ SELECT data->>'subreddit' AS subreddit FROM import.rc_2010_12 WHERE data->>'subr
 ###Zadanie 2 GeoJSON
 
 Do tego zadania użyłem współrzędnych geograficznych stacji paliw pobranych z serwisu poipoint.pl w formacie csv.
-Do poprawienia formatu danych wykorzystałem [skrypt](https://github.com/psynowczyk/tnosql/blob/master/fix_fuel.js)
+Do poprawienia formatu danych wykorzystałem [skrypt](https://github.com/pbrzozowski/nosql/blob/master/fix_fuel.js)
 ```sh
 time mongoimport -d Trains -c fuel --type csv --file Stacje_Paliw.csv --headerline
 ```
@@ -328,8 +328,8 @@ Dodajemy geo-indeks do kolekcji:
 ]
 ```
 
-Przekształcenie do formatu geojson za pomocą [skryptu](https://github.com/psynowczyk/tnosql/blob/master/to_geojson.js)<br>
-Mapa: https://github.com/psynowczyk/tnosql/blob/master/1d1_result.geojson
+Przekształcenie do formatu geojson za pomocą [skryptu](https://github.com/pbrzozowski/nosql/blob/master/to_geojson.js)<br>
+Mapa: https://github.com/pbrzozowski/nosql/blob/master/1d1_result.geojson
 
 * Stacje paliw w promieniu 0.8° od Olsztyna
 ```sh
