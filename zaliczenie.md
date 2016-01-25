@@ -329,7 +329,7 @@ Dodajemy geo-indeks do kolekcji:
 ```
 
 Przekształcenie do formatu geojson za pomocą [skryptu](https://github.com/pbrzozowski/nosql/blob/master/to_geojson.js)<br>
-Mapa: https://github.com/pbrzozowski/nosql/blob/master/1d1_result.geojson
+Mapa: https://github.com/pbrzozowski/nosql/blob/master/1_result.geojson
 
 * Stacje paliw w promieniu 0.8° od Olsztyna
 ```sh
@@ -342,7 +342,7 @@ db.fuel.find({
 	}
 }).limit(5).toArray();
 ```
-Mapa: https://github.com/psynowczyk/tnosql/blob/master/1d2_result.geojson
+Mapa: https://github.com/pbrzozowski/nosql/blob/master/2_result.geojson
 
 * 100 stacji paliw na obszarze pomiędzy Gdańskiem, Olsztynem i Poznaniem.
 ```sh
@@ -362,9 +362,9 @@ db.fuel.find({
 	}
 }).limit(100).toArray();
 ```
-Mapa: https://github.com/psynowczyk/tnosql/blob/master/1d3_result.geojson
+Mapa: https://github.com/pbrzozowski/nosql/blob/master/3_result.geojson
 
-* Stacje paliw na linii Warszawa-Gdańsk (z powodu braku wyniku podałem dokładne współrzędne punktu A i B, które są stacjami paliw)
+* Stacje paliw na linii Warszawa-Gdańsk
 ```sh
 var line = {
 	"type": "LineString",
@@ -378,4 +378,4 @@ db.fuel.find({
 	}
 }).limit(100).toArray();
 ```
-Mapa: https://github.com/psynowczyk/tnosql/blob/master/1d4_result.geojson
+Mapa: https://github.com/pbrzozowski/nosql/blob/master/4_result.geojson
