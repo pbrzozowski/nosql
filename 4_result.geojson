@@ -1,0 +1,27 @@
+{
+	"type" : "FeatureCollection",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Krynica Morska",
+				"type" : "Point",
+				"coordinates" : [
+					19.42415,
+					54.374859
+				]
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"city" : "Warszawa",
+				"type" : "Point",
+				"coordinates" : [
+					20.904929,
+					52.239413
+				]
+			}
+		}
+	]
+}
