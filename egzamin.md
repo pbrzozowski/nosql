@@ -91,7 +91,7 @@ result: 1430248
 ```
 ##Agregacje: 
 
-####Miesiac w którym wykonano najwicej lotów z okresu ( październik, listopad, grudzień )
+####1. Miesiac w którym wykonano najwicej lotów z okresu ( październik, listopad, grudzień )
 
 Czyźby grudzień ?
 
@@ -145,7 +145,7 @@ A wlasnie że nie :)
 ```
 ----------
 
-####Numer trzech linii lotu, które spedzily najwięcej czasu w powietrzu
+####2. Numer trzech linii lotu, które spedzily najwięcej czasu w powietrzu
 
 #####Java
 ```js
@@ -206,7 +206,7 @@ for doc in zapytanie:
 ```
 ----------
 
-####Trzy samoloty które wykonaly najwicej latów do Atlanty
+####3. Trzy samoloty które wykonaly najwicej latów do Atlanty
 
 #####Java
 ```js
@@ -269,7 +269,7 @@ for doc in zapytanie:
 ```
 ----------
 
-####Trzy miasta które byly najczesciej odwiedzane, wedlug liczby ladowan
+####4. Trzy miasta które byly najczesciej odwiedzane, wedlug liczby ladowan
 
 #####Java
 ```js
