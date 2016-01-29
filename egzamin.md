@@ -147,7 +147,7 @@ A wlasnie że nie :)
 
 ####Numer trzech linii lotu, które spedzily najwięcej czasu w powietrzu
 
-
+#####Java
 ```js
 db.air.aggregate(
     { $group : 
@@ -156,6 +156,28 @@ db.air.aggregate(
     { $sort : { airTime : -1 }},
     { $limit : 3 }
 )
+```
+#####Python
+```js
+import pymongo
+import json
+from bson.son import SON
+from pymongo import MongoClient
+client = MongoClient()
+
+db = client['patryk']
+collection = db['air']
+
+pipeline = [
+    { $group : 
+        { _id : {flightNumber : "$FlightNum" },
+        airTime : { $sum : "$AirTime" }}}, 
+    { $sort : { airTime : -1 }},
+    { $limit : 3 }
+]
+zapytanie = db.air.aggregate(pipeline)
+for doc in zapytanie:
+   print(doc)
 ```
 
 ####Odpowiedz :
@@ -186,7 +208,7 @@ db.air.aggregate(
 
 ####Trzy samoloty które wykonaly najwicej latów do Atlanty
 
-
+#####Java
 ```js
 db.air.aggregate(
     {$match:{Dest:"ATL"}},
@@ -196,6 +218,29 @@ db.air.aggregate(
     { $sort : {countofFlights : -1 }}, 
     { $limit : 3 }
 )
+```
+#####Python
+```js
+import pymongo
+import json
+from bson.son import SON
+from pymongo import MongoClient
+client = MongoClient()
+
+db = client['patryk']
+collection = db['air']
+
+pipeline = [
+    {$match:{Dest:"ATL"}},
+    {$group : 
+        { _id : {TailNum : "$TailNum"}, 
+        countofFlights: { $sum : 1 }}}, 
+    { $sort : {countofFlights : -1 }}, 
+    { $limit : 3 }
+]
+zapytanie = db.air.aggregate(pipeline)
+for doc in zapytanie:
+   print(doc)
 ```
 
 ####Odpowiedz :
@@ -226,7 +271,7 @@ db.air.aggregate(
 
 ####Trzy miasta które byly najczesciej odwiedzane, wedlug liczby ladowan
 
-
+#####Java
 ```js
 db.air.aggregate(
     {$group: 
@@ -235,6 +280,28 @@ db.air.aggregate(
     { $sort : {totalDelays: -1 }}, 
     {$limit : 3 }
 )
+```
+#####Python
+```js
+import pymongo
+import json
+from bson.son import SON
+from pymongo import MongoClient
+client = MongoClient()
+
+db = client['patryk']
+collection = db['air']
+
+pipeline = [
+    {$group: 
+        { _id : {city : "$DestCityName" }, 
+        totalDelays : { $sum : 1 }}}, 
+    { $sort : {totalDelays: -1 }}, 
+    {$limit : 3 }
+]
+zapytanie = db.air.aggregate(pipeline)
+for doc in zapytanie:
+   print(doc)
 ```
 
 ####Odpowiedz :
