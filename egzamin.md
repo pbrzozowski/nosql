@@ -2,6 +2,7 @@
 
 Dane pobrane z http://www.rita.dot.gov czwartego kwartau 2014 roku.
 
+
 | System  | Czas | Wersja Mongo 
 | :------- | :---: | :---:|
 | Desktop | 1m12s| Mongo 2.6.5 Standard|
@@ -81,11 +82,12 @@ Przykładowy rekord:
 	"DistanceGroup" : 3,
  }
 ```
-Agregacje: 
+##Agregacje: 
 
-Miesic w którym wykonano najwicej lotów z okresu ( październik, listopad, grudzień )
+#Miesiac w którym wykonano najwicej lotów z okresu ( październik, listopad, grudzień )
 
 Czyźby grudzień ?
+
 ```js
 db.air.aggregate(
     {$group : 
@@ -96,7 +98,8 @@ db.air.aggregate(
 )
 ```
 
-A wanie że nie :)
+A wlasnie że nie :)
+
 ```js
 {
     "result" : [
@@ -111,7 +114,7 @@ A wanie że nie :)
 ```
 
 
-Numer trzech linii lotu, które spdziy najwięcej czasu w powietrzu
+#Numer trzech linii lotu, które spedzily najwięcej czasu w powietrzu
 
 
 ```js
@@ -148,7 +151,9 @@ db.air.aggregate(
 ```
 
 
-Trzy samoloty które wykonay najwicej latów do Atlanty
+#Trzy samoloty które wykonaly najwicej latów do Atlanty
+
+
 ```js
 db.air.aggregate(
     {$match:{Dest:"ATL"}},
@@ -184,7 +189,7 @@ db.air.aggregate(
 ```
 
 
-Trzy miasta które byy najczciej odwiedzane, wedlug liczby londowan
+#Trzy miasta które byly najczesciej odwiedzane, wedlug liczby ladowan
 
 
 ```js
