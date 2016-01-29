@@ -1,6 +1,6 @@
 
 
-Dane pobrane z http://www.rita.dot.gov czwartego kwartau 2014 roku.
+Dane pobrane z http://www.rita.dot.gov czwartego kwartalu 2014 roku.
 
 
 | System  | Czas | Wersja Mongo 
