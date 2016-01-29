@@ -37,7 +37,7 @@ db.reddit.findOne()
 ```
 Historia Procesora:
 
-![procesor](img/obraz2.png)
+![procesor](img/procesor mongo.jpg)
 
 Procesory były obciążone równomiernie od 25 do 95 procent. 
 Pamięć była wykorzystywana od 28 do 31 procent. 
@@ -121,11 +121,10 @@ Do zaimportowania rozpakowanego pliku RC_2010-12 użyłem programu pgfutter korz
 ```sh
 ./pgfutter --db postgres --user test --pw test json RC_2010-12
 ```
-![import](img/obraz5.png)
 
 Historia Procesora:
 
-![procesor](img/obraz6.png)
+![procesor](procesor psql.jpg)
 
 Procesory były obciążone równomiernie od 5 do 60 procent. Pamięć była wykorzystywana od 31 do 35 procent.
 
