@@ -5,7 +5,7 @@ Dane pobrane z http://www.rita.dot.gov czwartego kwartau 2014 roku.
 
 | System  | Czas | Wersja Mongo 
 | :------- | :---: | :---:|
-| Desktop | 1m12s| Mongo 2.6.5 Standard|
+| Debian | 1m12s| Mongodb 2.4 |
 
 ----------
 ####Import baz csv
