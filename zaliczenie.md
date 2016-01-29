@@ -5,7 +5,7 @@ korzystając z poniższej komendy:
 ```sh
 bunzip2 -c RC_2010-12.bz2 | mongoimport --drop --host 127.0.0.1 -d test -c reddit
 ```
-![import](img/obraz1.png)
+![import](img/import mongo.jpg)
 
 * pierwszy przykładowy json z kolekcji (wraz ze wszystkimi rekordami):
 ```sh
