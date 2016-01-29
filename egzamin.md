@@ -7,7 +7,7 @@ Dane pobrane z http://www.rita.dot.gov czwartego kwartau 2014 roku.
 | :------- | :---: | :---:|
 | Desktop | 1m12s| Mongo 2.6.5 Standard|
 
-
+----------
 ####Import baz csv
 
 
@@ -204,7 +204,7 @@ for doc in zapytanie:
 		}
 	]
 ```
-
+----------
 
 ####Trzy samoloty które wykonaly najwicej latów do Atlanty
 
@@ -267,7 +267,7 @@ for doc in zapytanie:
 		}
 	]
 ```
-
+----------
 
 ####Trzy miasta które byly najczesciej odwiedzane, wedlug liczby ladowan
 
@@ -327,4 +327,4 @@ for doc in zapytanie:
 		}
 	]
 ```
-
+----------
