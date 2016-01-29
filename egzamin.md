@@ -95,6 +95,7 @@ result: 1430248
 
 Czyźby grudzień ?
 
+####Java
 ```js
 db.air.aggregate(
     {$group : 
@@ -104,6 +105,29 @@ db.air.aggregate(
     { $limit : 1 }
 )
 ```
+#####Python
+```js
+import pymongo
+import json
+from bson.son import SON
+from pymongo import MongoClient
+client = MongoClient()
+
+db = client['patryk']
+collection = db['air']
+
+pipeline = [
+    {$group : 
+        { _id : {month : "$Month" }, 
+        air : { $sum : 1 }}}, 
+    { $sort : { air : -1 }}, 
+    { $limit : 1 }
+]
+zapytanie = db.air.aggregate(pipeline)
+for doc in zapytanie:
+   print(doc)
+```
+
 
 A wlasnie że nie :)
 
