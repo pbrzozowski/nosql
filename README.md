@@ -13,5 +13,5 @@ Informacje o komputerze na którym były wykonywane obliczenia:
 |-----------------------|---------------------------------|
 | System operacyjny     | Debian 5                        |
 | Procesor              | Intel Core i5 M520 2.40 GHz    |
-| Ilość rdzeni          | 4                               |
+| Ilość rdzeni          | 2                               |
 | Pamięć                | 4 GB                          |
