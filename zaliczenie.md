@@ -124,7 +124,7 @@ Do zaimportowania rozpakowanego pliku RC_2010-12 użyłem programu pgfutter korz
 
 Historia Procesora:
 
-![procesor](procesor psql.jpg)
+![procesor](img/procesor psql.jpg)
 
 Procesory były obciążone równomiernie od 5 do 60 procent. Pamięć była wykorzystywana od 31 do 35 procent.
 
