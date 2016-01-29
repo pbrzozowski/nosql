@@ -16,6 +16,9 @@ mongoimport -d patryk -c air -type csv --headerline --file On_Time_On_Time_Perfo
 mongoimport -d patryk -c air -type csv --headerline --file On_Time_On_Time_Performance_2014_11.csv
 mongoimport -d patryk -c air -type csv --headerline --file On_Time_On_Time_Performance_2014_12.csv
 ```
+Historia Procesora:
+
+![procesor](img/procesor mongo2.jpg)
 
 #### Liczba rekordów
 
