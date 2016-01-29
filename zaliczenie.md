@@ -2,6 +2,7 @@
 
 Zaimportowałem plik bazy **Reddit** ze wszystkimi komentarzami do grudnia 2010r. ze strony [archive.org](www.archive.org/download/2015_reddit_comments_corpus/reddit_data/2010/).
 korzystając z poniższej komendy:
+(2010 ze wzgledu na mala dostepnosć dyskowa)
 ```sh
 bunzip2 -c RC_2010-12.bz2 | mongoimport --drop --host 127.0.0.1 -d test -c reddit
 ```
