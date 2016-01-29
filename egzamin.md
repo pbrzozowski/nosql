@@ -8,7 +8,7 @@ Dane pobrane z http://www.rita.dot.gov czwartego kwartau 2014 roku.
 | Desktop | 1m12s| Mongo 2.6.5 Standard|
 
 
-###Import baz csv
+####Import baz csv
 
 
 ```js
@@ -17,7 +17,7 @@ mongoimport -d patryk -c air -type csv --headerline --file On_Time_On_Time_Perfo
 mongoimport -d patryk -c air -type csv --headerline --file On_Time_On_Time_Performance_2014_12.csv
 ```
 
-### Liczba rekordów
+#### Liczba rekordów
 
 
 ```js
@@ -26,7 +26,7 @@ db.air.find().count()
 result: 1430248
 
 ```
-###Przykładowy rekord:
+####Przykładowy rekord:
 
 ```js
 {
@@ -91,11 +91,11 @@ result: 1430248
 ```
 ##Agregacje: 
 
-###Miesiac w którym wykonano najwicej lotów z okresu ( październik, listopad, grudzień )
+####Miesiac w którym wykonano najwicej lotów z okresu ( październik, listopad, grudzień )
 
 Czyźby grudzień ?
 
-####Java
+#####Java
 ```js
 db.air.aggregate(
     {$group : 
@@ -130,7 +130,7 @@ for doc in zapytanie:
 
 
 A wlasnie że nie :)
-
+####Odpowiedz :
 ```js
 {
     "result" : [
@@ -145,7 +145,7 @@ A wlasnie że nie :)
 ```
 
 
-###Numer trzech linii lotu, które spedzily najwięcej czasu w powietrzu
+####Numer trzech linii lotu, które spedzily najwięcej czasu w powietrzu
 
 
 ```js
@@ -157,6 +157,8 @@ db.air.aggregate(
     { $limit : 3 }
 )
 ```
+
+####Odpowiedz :
 ```js
 {
     "result" : [
@@ -182,7 +184,7 @@ db.air.aggregate(
 ```
 
 
-###Trzy samoloty które wykonaly najwicej latów do Atlanty
+####Trzy samoloty które wykonaly najwicej latów do Atlanty
 
 
 ```js
@@ -195,6 +197,8 @@ db.air.aggregate(
     { $limit : 3 }
 )
 ```
+
+####Odpowiedz :
 ```js
 {
 "result" : [
@@ -220,7 +224,7 @@ db.air.aggregate(
 ```
 
 
-###Trzy miasta które byly najczesciej odwiedzane, wedlug liczby ladowan
+####Trzy miasta które byly najczesciej odwiedzane, wedlug liczby ladowan
 
 
 ```js
@@ -232,6 +236,8 @@ db.air.aggregate(
     {$limit : 3 }
 )
 ```
+
+####Odpowiedz :
 ```js
 	"result" : [
 		{
